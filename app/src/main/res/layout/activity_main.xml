@@ -21,4 +21,10 @@
         android:tag="2"
         android:text="AsyncTask" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:tag="3"
+        android:text="http parameters" />
 </LinearLayout>

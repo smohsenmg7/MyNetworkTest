@@ -22,9 +22,9 @@ public class AsyncTaskActivity extends AppCompatActivity {
     TextView textView;
 
     ProgressBar progressBar;
-    Button button;
+    Button button,getData,url_Button;
     int counter = 0;
-    Button getdata;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,12 @@ public class AsyncTaskActivity extends AppCompatActivity {
         textView.setMovementMethod(new ScrollingMovementMethod());
         button = findViewById(R.id.button_async_task);
         progressBar = findViewById(R.id.progressBar);
-        getdata=findViewById(R.id.button_async_task2);
-        getdata.setOnClickListener(new View.OnClickListener() {
+        getData=findViewById(R.id.button_async_task2);
+        getData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TaskGetData taskGetData=new TaskGetData();
-                taskGetData.execute();
+                taskGetData.execute(URL);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +101,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            return getData();
+            return Utils.getDataUrlConnection(strings[0]);
         }
 
         @Override
@@ -110,16 +110,5 @@ public class AsyncTaskActivity extends AppCompatActivity {
             textView.append(s);
         }
     }
-    private String getData() {
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet method = new HttpGet(URL);
-        try {
-            HttpResponse response = httpClient.execute(method);
-            return Utils.inputStreamToString(response.getEntity().getContent());
-        } catch (IOException e) {
 
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

@@ -12,12 +12,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
     public void onClick(View view) {
         String tag = (String) view.getTag();
         switch (tag) {
-            case "1": startActivity(new Intent(this,FirstExampleActivity.class));
+            case "1":
+                startActivity(new Intent(this, FirstExampleActivity.class));
                 break;
-            case "2":startActivity(new Intent(this,AsyncTaskActivity.class));
+            case "2":
+                startActivity(new Intent(this, AsyncTaskActivity.class));
+                break;
+            case "3":
+                startActivity(new Intent(this, HttpParamsActivity.class));
             default:
                 break;
         }
